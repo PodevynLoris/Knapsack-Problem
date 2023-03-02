@@ -39,6 +39,7 @@ public class Genome {
         for(final Gene gene : this.genome) {
             builder.append(gene.toString()).append((" "));
         }
+        builder.append(" Fitness score : "+fitness(27));
         return builder.toString();
     }
 
@@ -80,7 +81,7 @@ public class Genome {
         int[][] childrenBinary = swapArrays(parent1Binary,parent2Binary,indexCut);
 
         // Testing.....
-        System.out.println("Index cut : "+ indexCut + " and the length of the genome binary array is "+parent1Binary.length);
+        //System.out.println("Index cut : "+ indexCut + " and the length of the genome binary array is "+parent1Binary.length);
         // Testing.....
 
         Genome firstChild = Genome.createGenome();

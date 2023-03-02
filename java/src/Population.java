@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Population {
 
@@ -13,8 +14,27 @@ public class Population {
         this.populationSize = populationSize;
     }
 
+    public int getPopulationSize(){
+        return this.populationSize;
+    }
+
     List<Genome> getPopulation() {
         return this.population;
+    }
+
+
+    void update(int mutationRate, int newPopAddedSize, int numberOfGeneration) {
+        int i = 0;
+        while(i<numberOfGeneration) {
+
+            sortPopulation();
+            selection();
+            applySPCrosseOver();
+            applyMutation(mutationRate);
+            growPopulation(newPopAddedSize);
+            i++;
+        }
+
     }
 
 
@@ -30,21 +50,35 @@ public class Population {
 
     /**
      * @param mutationRate : from 1 to population size , the bigger it is , the less the number of mutation
-     */ //TODO Figure out if I need to
+     */ //TODO Check question in report
     public void applyMutation(int mutationRate) {
         Random random = new Random();
-        for(int i=0; i<this.population.size()/mutationRate; i++) {
+        for(int i=0; i<=this.population.size()/mutationRate; i++) {
             int ran = random.nextInt(this.population.size());
-
-            System.out.println("Genome "+ this.population.get(ran) + " is being mutated" );
+            //System.out.println("Genome "+ this.population.get(ran) + " is being mutated" );
             this.population.get(ran).mutate();
-            System.out.println("Mutation applied it became : " + this.population.get(ran));
+            //System.out.println("Mutation applied it became : " + this.population.get(ran));
         }
     }
 
 
-     Genome[] selection() {
+    public void growPopulation(int newPopAddedSize) {
+        this.population.addAll(start(newPopAddedSize));
+    }
+
+    public void sortPopulation() {
         Collections.sort(this.population, (one, two) -> Integer.compare(two.fitness(27), one.fitness(27)));
+    }
+
+    public void applySPCrosseOver() {
+        this.population.add(selection()[0].SPCrossOver(selection()[1])[0]);
+        this.population.add(selection()[0].SPCrossOver(selection()[1])[1]);
+    }
+
+    //TODO CHANGE METHOD SELECTION AND APPLY CROSSOVER AND CROSSEVER DEPENDING ON THE ELTISM SIZE
+    // AND DEPENDING ON IF WE CROSSOVER THE BESTS TOGETHER OR RANDOMS TOGETHER
+
+    Genome[] selection() {
         Genome[] best = new Genome[2];
         best[0] = this.population.get(0);
         best[1] = this.population.get(1);
@@ -61,7 +95,6 @@ public class Population {
         }
         return builder.toString();
     }
-
 
 
 }
