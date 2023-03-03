@@ -1,7 +1,11 @@
+package KP;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import GA.Evolution;
+import GA.Utils;
 
 
 public class Genome {
@@ -21,7 +25,7 @@ public class Genome {
         return CAPACITY;
     }
 
-    static Genome createGenome() {
+    public static Genome createGenome() {
 
         Random random = new Random();
         List<Stuff> stuffList = new ArrayList<>();
@@ -47,7 +51,7 @@ public class Genome {
         return builder.toString();
     }
 
-    int fitness(){
+    public int fitness(){
         int weight = 0;
         int usefulness = 0;
         for(Gene gene : this.genome) {
@@ -64,7 +68,7 @@ public class Genome {
 
 
     // Random bit flip
-    void  mutate() {
+    public void  mutate() {
         Random random = new Random();
         int ran = random.nextInt(this.genome.size());
         this.genome.get(ran).setInside(Utils.flip(this.genome.get(ran).getInside()));

@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package GA;
 
 public class PlayGround {
 
@@ -6,7 +6,7 @@ public class PlayGround {
 
 
 
-        // Population tests
+        // GA.Population tests
         Population pop = new Population(10);
         System.out.println(pop);
         System.out.println(pop.selection()[0]+" and "+pop.selection()[1]);

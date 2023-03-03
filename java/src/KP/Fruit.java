@@ -1,3 +1,5 @@
+package KP;
+
 public enum Fruit {
     APPLE("Apple", 5, 6),
     ORANGE("Orange", 6, 6),

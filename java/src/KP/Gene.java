@@ -1,3 +1,4 @@
+package KP;
 
 public class Gene {
 

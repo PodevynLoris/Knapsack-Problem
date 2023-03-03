@@ -1,4 +1,10 @@
+package GA;
+
+import KP.Genome;
+
 import java.util.*;
+
+import KP.Gene;
 
 public class Population {
 
@@ -38,7 +44,6 @@ public class Population {
         }
     }
 
-
     public List<Genome> start(final int populationSize) {
         final List<Genome> startingPop = new ArrayList<>();
         for(int i=0; i<populationSize;i++) {
@@ -56,7 +61,7 @@ public class Population {
         Random random = new Random();
         for(int i=0; i<=this.population.size()/mutationRate; i++) {
             int ran = random.nextInt(this.population.size());
-            //System.out.println("Genome "+ this.population.get(ran) + " is being mutated" );
+            //System.out.println("KP.Genome "+ this.population.get(ran) + " is being mutated" );
             this.population.get(ran).mutate();
             //System.out.println("Mutation applied it became : " + this.population.get(ran));
         }
@@ -96,7 +101,7 @@ public class Population {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        System.out.println("Initial Population of size : "+ this.populationSize);
+        System.out.println("Initial GA.Population of size : "+ this.populationSize);
         for(final Genome genome : this.population) {
             builder.append(genome.toString()).append(("\n"));
         }

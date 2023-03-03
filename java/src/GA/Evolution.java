@@ -1,15 +1,13 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.Timer;
+package GA;
 
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class Evolution {
 
-    static final int INITIAL_POPULATION_SIZE = 10;
+    static final int INITIAL_POPULATION_SIZE = 5;
     public static Population population;
-    static final int CAPACITY = 17;
+    public static final int CAPACITY = 50;
 
     public Evolution() {
         population = new Population(INITIAL_POPULATION_SIZE);
@@ -25,7 +23,7 @@ public class Evolution {
                 population.update(mutationRate, newPopAddedSize);
                 int fitness = population.getAlpha().fitness();
                 chart.updateChart(fitness, generation++);
-                System.out.println(population.getAlpha());
+                //System.out.println(population.getAlpha());
             }
         };
         Timer timer = new Timer();
@@ -34,7 +32,7 @@ public class Evolution {
 
     public static void main(String[] args) {
         Evolution evolution = new Evolution();
-        evolution.startEvolution(7, 1, 1000); // Update population every 1 second
+        evolution.startEvolution(7, 1, 50); // Update population every 1 second
     }
 
 
