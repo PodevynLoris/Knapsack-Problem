@@ -1,15 +1,12 @@
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Population {
 
+    public final List<Genome> population;
+    public final int populationSize;
 
-    private final List<Genome> population;
-    private final int populationSize;
 
-
-    Population(int populationSize) {
+    public Population(int populationSize) {
         this.population = start(populationSize);
         this.populationSize = populationSize;
     }
@@ -23,22 +20,26 @@ public class Population {
     }
 
 
-    void update(int mutationRate, int newPopAddedSize, int numberOfGeneration) {
-        int i = 0;
-        while(i<numberOfGeneration) {
-
-            sortPopulation();
+    void update(int mutationRate, int newPopAddedSize) {
             selection();
             applySPCrosseOver();
             applyMutation(mutationRate);
             growPopulation(newPopAddedSize);
-            i++;
-        }
+    }
 
+    void update1(int mutationRate, int newPopAddedSize, int numberOfGeneration) {
+       int i = 0;
+       while(i<numberOfGeneration) {
+        selection();
+        applySPCrosseOver();
+        applyMutation(mutationRate);
+        growPopulation(newPopAddedSize);
+        i++;
+        }
     }
 
 
-    private List<Genome> start(final int populationSize) {
+    public List<Genome> start(final int populationSize) {
         final List<Genome> startingPop = new ArrayList<>();
         for(int i=0; i<populationSize;i++) {
             final Genome genome = Genome.createGenome();
@@ -67,7 +68,7 @@ public class Population {
     }
 
     public void sortPopulation() {
-        Collections.sort(this.population, (one, two) -> Integer.compare(two.fitness(27), one.fitness(27)));
+        Collections.sort(this.population, (one, two) -> Integer.compare(two.fitness(), one.fitness()));
     }
 
     public void applySPCrosseOver() {
@@ -79,10 +80,16 @@ public class Population {
     // AND DEPENDING ON IF WE CROSSOVER THE BESTS TOGETHER OR RANDOMS TOGETHER
 
     Genome[] selection() {
+        sortPopulation();
         Genome[] best = new Genome[2];
         best[0] = this.population.get(0);
         best[1] = this.population.get(1);
         return best;
+    }
+
+    Genome getAlpha() {
+        sortPopulation();
+        return this.population.get(0);
     }
 
 

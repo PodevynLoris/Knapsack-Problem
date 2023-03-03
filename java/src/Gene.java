@@ -3,6 +3,7 @@ public class Gene {
 
     private  int inside;
     private  Stuff stuff;
+    private Fruit fruit;
 
     //Constructor
     public Gene(Stuff stuff, int inside) {

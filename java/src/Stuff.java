@@ -18,7 +18,6 @@ public enum Stuff
         }
 
     },
-
     ORANGE {
         @Override
         public String getName() {
@@ -53,7 +52,6 @@ public enum Stuff
         }
 
     },
-
     BLUEBERRY {
         @Override
         public String getName() {
@@ -71,7 +69,6 @@ public enum Stuff
         }
 
     },
-
     STRAWBERRY {
         @Override
         public String getName() {
@@ -89,8 +86,91 @@ public enum Stuff
         }
 
     },
+    CARROT {
+        @Override
+        public String getName() {
+            return "Carrot";
+        }
 
+        @Override
+        public int getUsefulness() {
+            return 5;
+        }
 
+        @Override
+        public int getWeight() {
+            return 2;
+        }
+
+    },
+    PEAR {
+        @Override
+        public String getName() {
+            return "Pear";
+        }
+
+        @Override
+        public int getUsefulness() {
+            return 6;
+        }
+
+        @Override
+        public int getWeight() {
+            return 6;
+        }
+
+    },
+    KIWI {
+        @Override
+        public String getName() {
+            return "Kiwi";
+        }
+
+        @Override
+        public int getUsefulness() {
+            return 1;
+        }
+
+        @Override
+        public int getWeight() {
+            return 1;
+        }
+
+    },
+    MCDO {
+        @Override
+        public String getName() {
+            return "McDo";
+        }
+
+        @Override
+        public int getUsefulness() {
+            return 1;
+        }
+
+        @Override
+        public int getWeight() {
+            return 10;
+        }
+
+    },
+    BEANS {
+        @Override
+        public String getName() {
+            return "Beans";
+        }
+
+        @Override
+        public int getUsefulness() {
+            return 10;
+        }
+
+        @Override
+        public int getWeight() {
+            return 2;
+        }
+
+    },
     WATERMELON {
         @Override
         public String getName() {

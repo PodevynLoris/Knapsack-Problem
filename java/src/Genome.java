@@ -7,6 +7,7 @@ import java.util.Random;
 public class Genome {
 //Wondering if the genome should be a list of gene or a list of 0101O0101 etc
     private final List<Gene> genome;
+    public final int CAPACITY = Evolution.CAPACITY;
 
     public Genome(List<Gene> genome) {
         this.genome = Collections.unmodifiableList(genome);
@@ -16,6 +17,9 @@ public class Genome {
         return genome;
     }
 
+    public int getCAPACITY() {
+        return CAPACITY;
+    }
 
     static Genome createGenome() {
 
@@ -39,18 +43,18 @@ public class Genome {
         for(final Gene gene : this.genome) {
             builder.append(gene.toString()).append((" "));
         }
-        builder.append(" Fitness score : "+fitness(27));
+        builder.append(" Fitness score : "+fitness());
         return builder.toString();
     }
 
-    int fitness(int limitWeight){
+    int fitness(){
         int weight = 0;
         int usefulness = 0;
         for(Gene gene : this.genome) {
             if(gene.getInside()==1) {
                 usefulness += gene.getStuff().getUsefulness();
                 weight += gene.getStuff().getWeight();
-                if(weight>limitWeight) {
+                if(weight>getCAPACITY()) {
                     return 0;
                 }
             }

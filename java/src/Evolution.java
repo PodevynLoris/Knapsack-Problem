@@ -1,13 +1,37 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Timer;
+
+
 public class Evolution {
 
-    static final int initialPopulationSize = 10;
+    static final int INITIAL_POPULATION_SIZE = 10;
+    public static Population population;
+    static final int CAPACITY = 17;
+
+    public Evolution() {
+        population = new Population(INITIAL_POPULATION_SIZE);
+    }
+
+    public void startEvolution(int mutationRate, int newPopAddedSize, long delay) {
+        TimerTask updateTask = new TimerTask() {
+            @Override
+            public void run() {
+                population.update(mutationRate, newPopAddedSize);
+                System.out.println(population.getAlpha());
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(updateTask, 0, delay);
+    }
 
     public static void main(String[] args) {
-
-        Population population = new Population(initialPopulationSize);
-        System.out.println(population);
-        population.update(7,2,100);
-        System.out.println("Final population of size "+ population.getPopulation().size());
-        System.out.println(population);
+        Evolution evolution = new Evolution();
+        evolution.startEvolution(7, 1, 5); // Update population every 1 second
     }
+
+
+
 }
