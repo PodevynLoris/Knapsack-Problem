@@ -41,15 +41,6 @@ public class Genome {
         return new Genome(genes);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        for(final Gene gene : this.genome) {
-            builder.append(gene.toString()).append((" "));
-        }
-        builder.append(" Fitness score : "+fitness());
-        return builder.toString();
-    }
 
     public int fitness(){
         int weight = 0;
@@ -105,6 +96,17 @@ public class Genome {
 
         return children;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        for(final Gene gene : this.genome) {
+            builder.append(gene.toString()).append((" "));
+        }
+        builder.append(" Fitness score : "+fitness());
+        return builder.toString();
+    }
+
 
 
 

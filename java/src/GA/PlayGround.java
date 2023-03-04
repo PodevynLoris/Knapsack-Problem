@@ -16,11 +16,11 @@ public class PlayGround {
         System.out.println("////////////////////////////////");
         System.out.println("////////////////////////////////");
         pop.sortPopulation();
-        pop.applyMutation(7);
+        pop.applyMutation();
 
         System.out.println("////////////////////////////////");
         System.out.println("////////////////////////////////");
-        pop.growPopulation(3);
+        pop.growPopulation();
         pop.sortPopulation();
         System.out.println(pop);
         // I need to review the selection

@@ -11,7 +11,7 @@ import java.util.Random;
 public class GenomeTSP {
 
     public final List<GeneTSP> genomeTSP;
-    public static final int genomeTSPSize = 5;
+    public static final int genomeTSPSize = 3;
 
 
     public GenomeTSP(List<GeneTSP> genome) {
@@ -44,7 +44,7 @@ public class GenomeTSP {
             fitness += Utils.euclideanDistance(this.genomeTSP.get(i),this.genomeTSP.get(i+1));
         }
         fitness += Utils.euclideanDistance(this.genomeTSP.get(this.getGenomeTSP().size()-1),this.genomeTSP.get(0));
-        return fitness;
+        return 1/fitness;
     }
 
     public void mutateTSP() {
@@ -64,7 +64,6 @@ public class GenomeTSP {
         this.genomeTSP.get(ran2).setY(temp.getY());
 
     }
-
 
     public GenomeTSP[] SPCrossOverTSP(final GenomeTSP partner)
     {
@@ -89,8 +88,6 @@ public class GenomeTSP {
         };
     }
 
-
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -99,6 +96,8 @@ public class GenomeTSP {
         }
         return builder.toString();
     }
+
+
 
 
 

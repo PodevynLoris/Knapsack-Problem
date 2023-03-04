@@ -4,7 +4,7 @@ public class GeneTSP {
 
      int x;
      int y;
-    static final int MAX_SIZE = 100;
+     static final int MAX_SIZE = 100;
 
     public GeneTSP(int x, int y) {
         this.x = x;
