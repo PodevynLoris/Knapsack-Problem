@@ -10,6 +10,7 @@ import java.awt.*;
 public class FitnessChart extends JFrame {
     private DefaultCategoryDataset dataset;
     private JFreeChart chart;
+    private JFreeChart chart2;
     private ChartPanel chartPanel;
 
     int show = 1;
@@ -18,6 +19,7 @@ public class FitnessChart extends JFrame {
     public FitnessChart() {
         this.dataset = new DefaultCategoryDataset();
         this.chart = ChartFactory.createLineChart("Fitness over generations", "Generation", "Fitness", dataset, PlotOrientation.VERTICAL, true, true, false);
+        this.chart2 = ChartFactory.createLineChart("Fitness over generations", "Generation", "Fitness", dataset, PlotOrientation.VERTICAL, true, true, false);
         this.chartPanel = new ChartPanel(chart);
         this.chartPanel.setPreferredSize(new java.awt.Dimension(1000, 333));
         this.setContentPane(chartPanel);

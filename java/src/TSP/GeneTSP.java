@@ -2,8 +2,8 @@ package TSP;
 
 public class GeneTSP {
 
-    final int x;
-    final int y;
+     int x;
+     int y;
     static final int MAX_SIZE = 100;
 
     public GeneTSP(int x, int y) {
@@ -16,6 +16,15 @@ public class GeneTSP {
     public int getY() {
         return y;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public static int getMAX_SIZE() {
         return MAX_SIZE;
     }
