@@ -8,11 +8,10 @@ public class Evolution {
     public static Population population;
     static final int INITIAL_POPULATION_SIZE = 100;
     public static final int CAPACITY = 50;
-    public static int mutationRate = 7;
-    public static int newPopAddedSize = 2;
-
-
-    public static int choice = 0;
+    public static int mutationRate = 30;
+    public static int newPopAddedSize = 0;
+    public static int numberOfPointsForTSP = 10;
+    public static int choice = 1;
 
 
     public Evolution() {
@@ -45,7 +44,7 @@ public class Evolution {
 
     public static void main(String[] args) {
         Evolution evolution = new Evolution();
-        evolution.startEvolution(50);
+        evolution.startEvolution(5);
     }
 
 

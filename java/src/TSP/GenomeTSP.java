@@ -1,17 +1,15 @@
 package TSP;
 
+import GA.Evolution;
 import GA.Utils;
 import KP.Gene;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GenomeTSP {
 
     public final List<GeneTSP> genomeTSP;
-    public static final int genomeTSPSize = 3;
+    public static final int genomeTSPSize = Evolution.numberOfPointsForTSP;
 
 
     public GenomeTSP(List<GeneTSP> genome) {
@@ -27,16 +25,28 @@ public class GenomeTSP {
     }
 
     public static GenomeTSP createGenomeTSP() {
+
         Random random = new Random();
-        List<GeneTSP> list = new ArrayList<>();
-        for(int i = 0; i< genomeTSPSize; i++) {
+        List<GeneTSP> original = new ArrayList<>();
+        for (int i = 0; i < genomeTSPSize; i++) {
             int ranX = random.nextInt(GeneTSP.getMAX_SIZE());
             int ranY = random.nextInt(GeneTSP.getMAX_SIZE());
-            GeneTSP gene = new GeneTSP(ranX,ranY);
-            list.add(gene);
+            GeneTSP gene = new GeneTSP(ranX, ranY);
+            original.add(gene);
         }
-        return new GenomeTSP(list);
+        return new GenomeTSP(original);
     }
+      //  Collections.shuffle(list);
+      //  return new GenomeTSP(list);
+      //  for(int i = 0; i< genomeTSPSize; i++) {
+        //       int ranX = random.nextInt(GeneTSP.getMAX_SIZE());
+        //      int ranY = random.nextInt(GeneTSP.getMAX_SIZE());
+        //     GeneTSP gene = new GeneTSP(ranX,ranY);
+        //     list.add(gene);
+
+       // return new GenomeTSP(list);
+
+
 
     public double fitnessTSP() {
         double fitness = 0.0;

@@ -1,5 +1,8 @@
 package TSP;
 
+import GA.Evolution;
+import GA.Population;
+
 public class PlayGround {
 
     public static void main(String[] args) {
@@ -26,5 +29,7 @@ public class PlayGround {
 
         System.out.println(child2.fitnessTSP());
 
+        Population pop = new Population(10);
+        System.out.println(pop);
     }
 }

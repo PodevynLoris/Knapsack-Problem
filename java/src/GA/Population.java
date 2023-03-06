@@ -1,6 +1,7 @@
 package GA;
 
 import KP.Genome;
+import TSP.GeneTSP;
 import TSP.GenomeTSP;
 
 import java.util.*;
@@ -59,7 +60,7 @@ public class Population {
         selectionTSP();
         applySPCrosseOver();
         applyMutation();
-        growPopulation();
+        //growPopulation();
     }
     void update1(int numberOfGeneration) {
        int i = 0;
@@ -83,10 +84,16 @@ public class Population {
     }
     private List<GenomeTSP> startTSP(int populationSize) {
         final List<GenomeTSP> startingPop = new ArrayList<>();
-        for(int i=0; i<populationSize;i++) {
-            final GenomeTSP genome = GenomeTSP.createGenomeTSP();
-            startingPop.add(genome);
+        GenomeTSP genome = GenomeTSP.createGenomeTSP();
+        startingPop.add(genome);
+
+        for (int i = 1; i < populationSize; i++) {
+            List<GeneTSP> shuffledGenes = new ArrayList<>(genome.getGenomeTSP());
+            Collections.shuffle(shuffledGenes);
+            GenomeTSP newGenome = new GenomeTSP(shuffledGenes);
+            startingPop.add(newGenome);
         }
+
         return startingPop;
     }
 
