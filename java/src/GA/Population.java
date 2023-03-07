@@ -33,7 +33,7 @@ public class Population {
         return this.populationSize;
     }
 
-    List<Genome> getPopulation() {
+    public List<Genome> getPopulation() {
         return this.population;
     }
 
@@ -84,7 +84,7 @@ public class Population {
     }
     private List<GenomeTSP> startTSP(int populationSize) {
         final List<GenomeTSP> startingPop = new ArrayList<>();
-        GenomeTSP genome = GenomeTSP.createGenomeTSP();
+        GenomeTSP genome = GenomeTSP.createCircleGenomeTSP();
         startingPop.add(genome);
 
         for (int i = 1; i < populationSize; i++) {
@@ -131,7 +131,7 @@ public class Population {
             Collections.sort(this.population, (one, two) -> Integer.compare(two.fitness(), one.fitness()));
         }
         else {
-            Collections.sort(this.populationTSP, (one, two) -> Double.compare(two.fitnessTSP(), one.fitnessTSP()));
+            Collections.sort(this.populationTSP, Comparator.comparingDouble(GenomeTSP::fitnessTSP));
         }
     }
 
@@ -156,7 +156,7 @@ public class Population {
         best[1] = this.population.get(1);
         return best;
     }
-    GenomeTSP[] selectionTSP() {
+    public GenomeTSP[] selectionTSP() {
         sortPopulation();
         GenomeTSP[] best = new GenomeTSP[2];
         best[0] = this.populationTSP.get(0);
@@ -169,7 +169,7 @@ public class Population {
             return this.population.get(0);
     }
 
-    GenomeTSP getAlphaTSP() {
+    public GenomeTSP getAlphaTSP() {
         sortPopulation();
         return this.populationTSP.get(0);
     }

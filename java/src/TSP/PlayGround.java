@@ -1,13 +1,13 @@
 package TSP;
 
-import GA.Evolution;
 import GA.Population;
 
 public class PlayGround {
 
     public static void main(String[] args) {
 
-        GenomeTSP genomeTSP = GenomeTSP.createGenomeTSP();
+       /*
+       * GenomeTSP genomeTSP = GenomeTSP.createGenomeTSP();
         GenomeTSP genomeTSP2 = GenomeTSP.createGenomeTSP();
         System.out.println(genomeTSP);
         System.out.println(genomeTSP.fitnessTSP());
@@ -28,8 +28,19 @@ public class PlayGround {
         System.out.println("Child2 -> "+array[1]);
 
         System.out.println(child2.fitnessTSP());
+       * */
 
-        Population pop = new Population(10);
+
+        Population pop = new Population(5);
         System.out.println(pop);
+        pop.sortPopulation();
+        System.out.println(pop);
+        System.out.println(pop.getAlphaTSP());
+        System.out.println(pop);
+
+       // GenomeTSP genomeTest = GenomeTSP.createCircleGenomeTSP();
+       // System.out.println(genomeTest);
+
+
     }
 }

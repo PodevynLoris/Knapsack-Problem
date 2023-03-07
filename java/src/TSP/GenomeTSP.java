@@ -2,7 +2,6 @@ package TSP;
 
 import GA.Evolution;
 import GA.Utils;
-import KP.Gene;
 
 import java.util.*;
 
@@ -36,6 +35,29 @@ public class GenomeTSP {
         }
         return new GenomeTSP(original);
     }
+
+    public static GenomeTSP createCircleGenomeTSP() {
+        Random random = new Random();
+        int centerX = 50;
+        int centerY = 50;
+        int radius = 25;
+        List<GeneTSP> data = new ArrayList<>();
+
+        for (int i = 0; i < genomeTSPSize; i++) {
+
+            double angle = random.nextDouble() * 2 * Math.PI;
+            int x = (int) (centerX + radius * Math.cos(angle));
+            int y = (int) (centerY + radius * Math.sin(angle));
+            //double a = random.nextInt(360);
+            //int ranX = (int)(circleCenterX+radius*Math.cos(a));
+            //int ranY = (int)(circleCenterY+radius*Math.sin(a));
+            GeneTSP gene = new GeneTSP(x,y);
+            data.add(gene);
+        }
+        return new GenomeTSP(data);
+    }
+
+
       //  Collections.shuffle(list);
       //  return new GenomeTSP(list);
       //  for(int i = 0; i< genomeTSPSize; i++) {
@@ -47,18 +69,16 @@ public class GenomeTSP {
        // return new GenomeTSP(list);
 
 
-
     public double fitnessTSP() {
         double fitness = 0.0;
         for(int i=0; i<this.genomeTSP.size()-1;i++) {
             fitness += Utils.euclideanDistance(this.genomeTSP.get(i),this.genomeTSP.get(i+1));
         }
         fitness += Utils.euclideanDistance(this.genomeTSP.get(this.getGenomeTSP().size()-1),this.genomeTSP.get(0));
-        return 1/fitness;
+        return fitness;
     }
 
     public void mutateTSP() {
-
         Random random = new Random();
         int ran = random.nextInt(this.genomeTSP.size());
         int ran2 = random.nextInt(this.genomeTSP.size());
@@ -72,7 +92,6 @@ public class GenomeTSP {
         this.genomeTSP.get(ran).setY(this.genomeTSP.get(ran2).getY());
         this.genomeTSP.get(ran2).setX(temp.getX());
         this.genomeTSP.get(ran2).setY(temp.getY());
-
     }
 
     public GenomeTSP[] SPCrossOverTSP(final GenomeTSP partner)
@@ -104,8 +123,11 @@ public class GenomeTSP {
         for(final GeneTSP gene : this.genomeTSP) {
             builder.append(gene.toString()).append((" "));
         }
+        builder.append(" Fitness score : "+fitnessTSP());
         return builder.toString();
     }
+
+
 
 
 

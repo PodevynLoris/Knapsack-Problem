@@ -1,6 +1,11 @@
 package GA;
 
 import TSP.GeneTSP;
+import TSP.GenomeTSP;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Utils {
 
@@ -21,5 +26,7 @@ public class Utils {
         dist = Math.sqrt(deltaX+deltaY);
         return dist;
     }
+
+
 
 }

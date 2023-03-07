@@ -8,14 +8,15 @@ public class Evolution {
     public static Population population;
     static final int INITIAL_POPULATION_SIZE = 100;
     public static final int CAPACITY = 50;
-    public static int mutationRate = 30;
+    public static int mutationRate = INITIAL_POPULATION_SIZE/2;
     public static int newPopAddedSize = 0;
-    public static int numberOfPointsForTSP = 10;
-    public static int choice = 1;
+    public static int numberOfPointsForTSP = 15;
+    public static int choice = 0;
 
 
     public Evolution() {
         population = new Population(INITIAL_POPULATION_SIZE);
+        System.out.println(population);
     }
 
     public void startEvolution(long delay) {
@@ -32,8 +33,8 @@ public class Evolution {
                 }
                 else {
                     fitness = population.getAlphaTSP().fitnessTSP();
+                    System.out.println(population.getAlphaTSP());
                 }
-
                 chart.updateChart(fitness, generation++);
                 //System.out.println(population.getAlpha());
             }

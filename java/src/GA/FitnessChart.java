@@ -13,8 +13,9 @@ public class FitnessChart extends JFrame {
     private JFreeChart chart2;
     private ChartPanel chartPanel;
 
-    int show = 1;
-    int check = 0;
+
+    private int windowSize = 20; // Will calculate the average fitness over "windowSize" generation.
+
 
     public FitnessChart() {
         this.dataset = new DefaultCategoryDataset();
@@ -24,20 +25,25 @@ public class FitnessChart extends JFrame {
         this.setContentPane(chartPanel);
         this.pack();
         this.setVisible(true);
-
     }
 
     public void updateChart(double fitness, int generation) {
 
-        //if(generation%show==0) {
-            SwingUtilities.invokeLater(() -> dataset.addValue(fitness, "Fitness", Integer.toString(generation)));
-            System.out.println(generation);
-          //  check +=1;
-           // if(check ==10) {
-                show =show*10;
-                check = 0;
-           // }
-       // }
-    }
+        SwingUtilities.invokeLater(() -> {
+            // add the current fitness to the dataset
+            dataset.addValue(fitness, "Fitness", Integer.toString(generation));
 
+            // if we have enough data points, calculate the average fitness over the last windowSize generations
+            if (dataset.getColumnCount() >= windowSize) {
+                double sum = 0.0;
+                for (int i = dataset.getColumnCount() - windowSize; i < dataset.getColumnCount(); i++) {
+                    sum += dataset.getValue(0, i).doubleValue();
+                }
+                double averageFitness = sum / windowSize;
+                dataset.addValue(averageFitness, "Average Fitness", Integer.toString(generation));
+            }
+        });
+    }
 }
+
+
